@@ -18,3 +18,21 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('example/{id}/{name}', function($id, $name) {
+
+    return 'hello example'.' '.$id.' '.$name;
+});
+
+
+
+Route::get('somerouth/{id}/{name}', array('as'=>'somerouth.home', function($id, $name) {
+
+    return 'hello somerouth'.' '.$id.' '.$name;
+}));
+
+
+Route::resource('debt', 'DebtsController');
+Route::resource('payment', 'PaymentsController');
+Route::resource('user', 'UsersController');
