@@ -39,6 +39,19 @@ Route::get('/insert', function(){
 
 });
 
+Route::get('read', function(){
+
+    $result = DB::select('select * from users where id = ?', [1]);
+
+ // return var_dump($result);
+
+    foreach ($result as $username)
+
+        return $username->name;
+
+ // return $result;
+});
+
 Route::resource('debt', 'DebtsController');
 Route::resource('payment', 'PaymentsController');
 Route::resource('user', 'UsersController');
