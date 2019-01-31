@@ -33,6 +33,12 @@ Route::get('somerouth/{id}/{name}', array('as'=>'somerouth.home', function($id, 
 }));
 
 
+Route::get('/insert', function(){
+
+    DB::insert('insert into users(name, email, password) values(?, ?, ?)', ['User', 'user@gmail.com', 'user']);
+
+});
+
 Route::resource('debt', 'DebtsController');
 Route::resource('payment', 'PaymentsController');
 Route::resource('user', 'UsersController');

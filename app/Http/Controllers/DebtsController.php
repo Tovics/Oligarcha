@@ -45,7 +45,7 @@ class DebtsController extends Controller
      */
     public function show($id)
     {
-        return 'iam the payments controllers show method'. " " . $id;//
+
     }
 
     /**
