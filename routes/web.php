@@ -80,7 +80,7 @@ Route::get('delete/{id}', function ($id){
 
 Route::get('showall', function() {
 
-    $users = User::find(6);
+    $users = User::find(8);
 
     return $users;
 
@@ -98,6 +98,16 @@ Route::get('basicinsert', function() {
     $user->save();
 });
 
+Route::get('basicinsert2', function() {
+
+    $user = User::find(8);
+
+    $user->name = 'basicinsert user2';
+    $user->password = 'basicinsertpassword2';
+    $user->email = 'basicinsert@email.com2';
+
+    $user->save();
+});
 
 Route::resource('debt', 'DebtsController');
 Route::resource('payment', 'PaymentsController');
