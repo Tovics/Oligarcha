@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,24 +34,70 @@ Route::get('somerouth/{id}/{name}', array('as'=>'somerouth.home', function($id, 
 }));
 
 
-Route::get('/insert', function(){
+Route::get('insert', function(){
 
     DB::insert('insert into users(name, email, password) values(?, ?, ?)', ['User', 'user@gmail.com', 'user']);
 
 });
 
-Route::get('read', function(){
+Route::get('read/{id}', function($id){
 
-    $result = DB::select('select * from users where id = ?', [1]);
+    $result = DB::select('select * from users where id = ?', [$id]);
 
  // return var_dump($result);
 
-    foreach ($result as $username)
+ //   foreach ($result as $username)
 
-        return $username->name;
+ //       return $username->name;
 
- // return $result;
+  return $result;
 });
+
+Route::get('update', function (){
+
+    $newname = 'new_name';
+    // $updatedStuff = DB::update('update users set email = ' .$newname. ' where id = ?', [5]);
+    $updatedStuff = DB::table('users')
+        ->where('id', 5)
+        ->update(['email' => $newname]);
+
+ //   $updatedStuff = DB::update(DB::RAW('update users set name = ' .$newname. ' where id = ?', [5]));
+
+    return $updatedStuff;
+});
+
+Route::get('delete/{id}', function ($id){
+
+    $deleted = DB::delete('delete from users where id = ?', [$id]);
+
+   // $deleted = DB::table('users')
+   //     ->where('id', $id)
+   //     ->delete;
+
+    return $deleted;
+});
+
+
+Route::get('showall', function() {
+
+    $users = User::find(6);
+
+    return $users;
+
+});
+
+
+Route::get('basicinsert', function() {
+
+    $user = new User;
+
+    $user->name = 'basicinsert user';
+    $user->password = 'basicinsertpassword';
+    $user->email = 'basicinsert@email.com';
+
+    $user->save();
+});
+
 
 Route::resource('debt', 'DebtsController');
 Route::resource('payment', 'PaymentsController');
