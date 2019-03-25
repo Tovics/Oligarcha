@@ -19,6 +19,7 @@
 
 </head>
 <body>
+
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
@@ -39,7 +40,7 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li class="nav-item">
+                            <li cla ss="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
@@ -72,13 +73,14 @@
         </nav>
 
         <main class="py-4">
+            @include('navbar')
             @yield('content')
+            @include('layouts.footer')
         </main>
     </div>
 </body>
 <footer>
-    <!-- Scripts -->
+<!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-
 </footer>
 </html>

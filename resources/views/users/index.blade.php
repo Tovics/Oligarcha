@@ -1,14 +1,14 @@
 @extends('layouts.app')
 @section('content')
-<h2>Táblázat</h2>
+<h2>Users</h2>
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
-                <th scope="col">Email verif</th>
-                <th scope="col">password</th>
+                <th scope="col">Email_verif</th>
+                <th scope="col">Password</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>

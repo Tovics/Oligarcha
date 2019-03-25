@@ -15,8 +15,16 @@ class CreateDebtsTable extends Migration
     {
         Schema::create('debts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('to_who');
-            $table->integer('from_who');
+            $table->integer('payee_user_id')->unsigned();
+            $table->foreign('payee_user_id')
+                        ->references('id')
+                        ->on('users')
+                        ->onDelete('cascade');
+            $table->integer('payer_user_id')->unsigned();
+            $table->foreign('payer_user_id')
+                        ->references('id')
+                        ->on('users')
+                        ->onDelete('cascade');
             $table->string('title');
             $table->string('description');
             $table->integer('amount');

@@ -13,7 +13,7 @@ use App\User;
 */
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/user', 'UsersController@index');
 Route::get('/user/{id}', 'UsersController@show');
@@ -24,6 +24,6 @@ Route::resource('user', 'UsersController');
 Route::resource('home', 'HomeController');
 
 Route::get('/', function () {
-    return view('users.index');
+    return view('layouts.app');
 });
 
