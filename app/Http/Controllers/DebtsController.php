@@ -13,7 +13,8 @@ class DebtsController extends Controller
      */
     public function index()
     {
-       return 'iam the debts controllers index method'; //
+        $debts = Debt::orderBy('id', 'asc')
+        return 'iam the debts controllers index method'; //
     }
 
     /**

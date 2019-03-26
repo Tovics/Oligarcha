@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use phpDocumentor\Reflection\Types\Integer;
 use Faker\Factory as Faker;
 use Illuminate\Support\Str;
 use App\User;
@@ -14,8 +13,7 @@ class DebtsTabelSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
+    public function run() {
         $faker = Faker::create();
         $users = User::all()->pluck('id')->toArray();
 
@@ -28,13 +26,14 @@ class DebtsTabelSeeder extends Seeder
                 $payer_user_id = $faker->randomElement($users);
             }
 
+
             DB::table('debts')->insert([
                 'payee_user_id' => $payee_user_id,
                 'payer_user_id' => $payer_user_id,
                 'title' => Str::random(10),
                 'description' => Str::random(25),
                 'amount' => rand(5, 20),
-
+                'created_at' => $faker->dateTimeBetween($startDate = '-5 years', $endDate = 'now')
             ]);
         }
     }
